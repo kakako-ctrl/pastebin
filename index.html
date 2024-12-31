@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vilebin</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #060606;
+            color: #888888;
+        }
+        .navi_wrap {
+            border-bottom: 1px solid #282828;
+        }
+        .navi {
+            display: flex;
+            max-width: 1170px;
+            margin: 0 auto;
+            padding: 10px 0;
+        }
+        .navi a {
+            color: #888888;
+            text-decoration: none;
+            padding: 10px 15px;
+        }
+        .navi .brand {
+            font-size: 18px;
+            color: #fff;
+        }
+        .navi .navi_right {
+            margin-left: auto;
+        }
+        .navi a.active {
+            color: #fff;
+        }
+        .container {
+            max-width: 1170px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #111111;
+            border-radius: 8px;
+        }
+        h1, h2, h5, h6 {
+            color: #fff;
+            margin: 10px 0;
+        }
+        a {
+            color: #2AABEE;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .search_area {
+            display: flex;
+            margin-top: 20px;
+            justify-content: center;
+        }
+        .search_area input {
+            background-color: #242424;
+            border: 1px solid #464646;
+            padding: 8px;
+            border-radius: 4px;
+            color: #c6c6c6;
+            margin-right: 5px;
+        }
+        .search_area button {
+            background-color: #3d3d3d;
+            border: 1px solid #464646;
+            color: white;
+            padding: 8px;
+            cursor: pointer;
+        }
+        .search_area button:hover {
+            background-color: #282828;
+        }
+        .pastes {
+            margin-top: 20px;
+        }
+        .pinned, .normal {
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #181818;
+        }
+        th, td {
+            padding: 8px;
+            border: 1px solid #282828;
+        }
+        th {
+            text-align: left;
+        }
+        tr:hover {
+            background-color: #282828;
+        }
+        .admin-post {
+            background-color: #3d0606;
+        }
+        .admin-post:hover {
+            background-color: #300505;
+        }
+        .manager-post {
+            background-color: #0c3b1a;
+        }
+        .manager-post:hover {
+            background-color: #0a3317;
+        }
+    </style>
+</head>
+<body>
+    <div class="navi_wrap">
+        <div class="navi">
+            <a href="/" class="brand">Vilebin</a>
+            <a href="/" class="active">Home</a>
+            <a href="/upload">Add Paste</a>
+            <a href="/users">Users</a>
+            <a href="/upgrade">Upgrade</a>
+            <a href="/hoa">Hall of Autism</a>
+            <a href="/tos">FAQ + TOS</a>
+            <div class="navi_right">
+                <a href="/login">Login</a>
+                <a href="/register">Register</a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Welcome to Vilebin</h1>
+        <div class="search">
+            <form class="search_area" action="/search" method="get"> 
+                <input type="text" name="q" placeholder="Search for a paste..."> 
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        <div class="pastes">
+            <div class="pinned">
+                <h2>Pinned Pastes</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Comments</th>
+                            <th>Views</th>
+                            <th>Date</th> 
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="admin-post">
+                            <td>How to Ensure Your Post Stays Up</td>
+                            <td>0</td>
+                            <td>55,434</td>
+                            <td>Dec 8, 2024</td>
+                        </tr>
+                        <tr class="manager-post">
+                            <td>Transparency Report</td>
+                            <td>0</td>
+                            <td>32,463</td>
+                            <td>Dec 8, 2024</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="normal">
+                <h2>Recent Pastes</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Comments</th>
+                            <th>Views</th>
+                            <th>Date</th> 
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ScottyofFivem | Diego</td>
+                            <td>0</td>
+                            <td>19</td>
+                            <td>Dec 9, 2024</td>
+                        </tr>
+                        <tr>
+                            <td>Vitals | uybr | Addysen Whittis</td>
+                            <td>0</td>
+                            <td>38</td>
+                            <td>Dec 9, 2024</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Login Form -->
+    <div id="loginForm" style="display:none;">
+        <form action="/login" method="post">
+            <label for="username">Username:</label>
+            <input type="text" name="username" required><br>
+            <label for="password">Password:</label>
+            <input type="password" name="password" required><br>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <!-- Register Form -->
+    <div id="registerForm" style="display:none;">
+        <form action="/register" method="post">
+            <label for="username">Username:</label>
+            <input type="text" name="username" required><br>
+            <label for="password">Password:</label>
+            <input type="password" name="password" required><br>
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" name="confirm_password" required><br>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <!-- Add the functionality for login, register, and database clearing -->
+    <script>
+        function toggleForms() {
+            let loginForm = document.getElementById('loginForm');
+            let registerForm = document.getElementById('registerForm');
+            if (loginForm.style.display === 'none') {
+                loginForm.style.display = 'block';
+                registerForm.style.display = 'none';
+            } else {
+                loginForm.style.display = 'none';
+                registerForm.style.display = 'block';
+            }
+        }
+
+        function clearDatabase() {
+            fetch('/clear-db', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    alert('Database cleared successfully');
+                })
+                .catch(error => {
+                    console.error('Error clearing database:', error);
+                });
+        }
+    </script>
+</body>
+</html>
