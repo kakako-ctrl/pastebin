@@ -124,23 +124,19 @@
             <a href="/hoa">Hall of Autism</a>
             <a href="/tos">FAQ + TOS</a>
             <div class="navi_right">
-                <a href="/login" id="login-toggle">Login</a>
-                <a href="/register" id="register-toggle">Register</a>
+                <a href="/login">Login</a>
+                <a href="/register">Register</a>
             </div>
         </div>
     </div>
     <div class="container">
         <h1>Welcome to Vilebin</h1>
-        
-        <!-- Search Form -->
         <div class="search">
             <form class="search_area" action="/search" method="get"> 
                 <input type="text" name="q" placeholder="Search for a paste..."> 
                 <button type="submit">Search</button>
             </form>
         </div>
-
-        <!-- Pinned Pastes Section -->
         <div class="pastes">
             <div class="pinned">
                 <h2>Pinned Pastes</h2>
@@ -169,8 +165,6 @@
                     </tbody>
                 </table>
             </div>
-
-            <!-- Normal Pastes -->
             <div class="normal">
                 <h2>Recent Pastes</h2>
                 <table>
@@ -199,42 +193,70 @@
                 </table>
             </div>
         </div>
-
-        <!-- Login and Register Forms -->
-        <div id="loginForm" style="display:none;">
-            <form action="/login" method="post">
-                <label for="username">Username:</label>
-                <input type="text" name="username" required><br>
-                <label for="password">Password:</label>
-                <input type="password" name="password" required><br>
-                <button type="submit">Login</button>
-            </form>
-        </div>
-
-        <div id="registerForm" style="display:none;">
-            <form action="/register" method="post">
-                <label for="username">Username:</label>
-                <input type="text" name="username" required><br>
-                <label for="password">Password:</label>
-                <input type="password" name="password" required><br>
-                <label for="confirm_password">Confirm Password:</label>
-                <input type="password" name="confirm_password" required><br>
-                <button type="submit">Register</button>
-            </form>
-        </div>
-
     </div>
 
-    <!-- Script for toggling Login and Register Forms -->
+    <!-- Login Form -->
+    <div id="loginForm" style="display:none;">
+        <form action="/login" method="post">
+            <label for="username">Username:</label>
+            <input type="text" name="username" required><br>
+            <label for="password">Password:</label>
+            <input type="password" name="password" required><br>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <!-- Register Form -->
+    <div id="registerForm" style="display:none;">
+        <form action="/register" method="post">
+            <label for="username">Username:</label>
+            <input type="text" name="username" required><br>
+            <label for="password">Password:</label>
+            <input type="password" name="password" required><br>
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" name="confirm_password" required><br>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <!-- Add the functionality for login, register, and database clearing -->
     <script>
-        document.getElementById('login-toggle').addEventListener('click', function() {
-            document.getElementById('loginForm').style.display = 'block';
-            document.getElementById('registerForm').style.display = 'none';
+        function toggleForms() {
+            let loginForm = document.getElementById('loginForm');
+            let registerForm = document.getElementById('registerForm');
+            if (loginForm.style.display === 'none') {
+                loginForm.style.display = 'block';
+                registerForm.style.display = 'none';
+            } else {
+                loginForm.style.display = 'none';
+                registerForm.style.display = 'block';
+            }
+        }
+
+        function clearDatabase() {
+            fetch('/clear-db', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    alert('Database cleared successfully');
+                })
+                .catch(error => {
+                    console.error('Error clearing database:', error);
+                });
+        }
+
+        document.querySelector('a[href="/login"]').addEventListener('click', function(event) {
+            event.preventDefault();
+            toggleForms();
         });
 
-        document.getElementById('register-toggle').addEventListener('click', function() {
-            document.getElementById('loginForm').style.display = 'none';
-            document.getElementById('registerForm').style.display = 'block';
+        document.querySelector('a[href="/register"]').addEventListener('click', function(event) {
+            event.preventDefault();
+            toggleForms();
+        });
+
+        document.querySelector('a[href="/clear-db"]').addEventListener('click', function(event) {
+            event.preventDefault();
+            clearDatabase();
         });
     </script>
 </body>
